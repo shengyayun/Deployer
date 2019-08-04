@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"time"
 
 	"./tools"
 )
@@ -11,6 +12,13 @@ var flagDst = flag.String("d", "./dst", "打包地址")
 var flagBranch = flag.String("b", "master", "标签所在分支")
 
 func main() {
+	for {
+		pack()
+		time.Sleep(time.Second * 5)
+	}
+}
+
+func pack() {
 	flag.Parse()
 	//src
 	src, err := tools.NewSrc(*flagSrc, *flagBranch)
@@ -46,10 +54,12 @@ func main() {
 	if exist {
 		return
 	}
+	tools.Out("正在打包...")
 	//apply it
 	err = commit.Apply()
 	if err != nil {
 		tools.Out("发布失败：" + err.Error())
 		return
 	}
+	tools.Out("打包成功：" + id)
 }
