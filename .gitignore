@@ -1,4 +1,4 @@
 main
 html
-dist/
-src/
+dist/*
+src/*
