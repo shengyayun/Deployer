@@ -1,3 +1,3 @@
-# deployer
+# Git项目自动部署工具
 
-- [x] VUE
+- [x] Vue
