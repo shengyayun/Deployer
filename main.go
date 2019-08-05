@@ -7,27 +7,28 @@ import (
 	"./tools"
 )
 
-var flagSrc = flag.String("s", "./src", "源代码地址")
-var flagDst = flag.String("d", "./dst", "打包地址")
-var flagBranch = flag.String("b", "master", "标签所在分支")
+var flagSrc = *flag.String("s", "./src", "源代码路径")
+var flagDst = *flag.String("d", "./dst", "打包路径")
+var flagBranch = *flag.String("b", "master", "项目分支")
+var flagInterval = *flag.Int64("i", 5, "更新频率")
 
 func main() {
 	for {
 		pack()
-		time.Sleep(time.Second * 5)
+		time.Sleep(time.Second * time.Duration(flagInterval))
 	}
 }
 
 func pack() {
 	flag.Parse()
 	//src
-	src, err := tools.NewSrc(*flagSrc, *flagBranch)
+	src, err := tools.NewSrc(flagSrc, flagBranch)
 	if err != nil {
 		tools.Out("src加载失败：" + err.Error())
 		return
 	}
 	//dst
-	dst, err := tools.NewDst(*flagDst)
+	dst, err := tools.NewDst(flagDst)
 	if err != nil {
 		tools.Out("dst加载失败：" + err.Error())
 		return
