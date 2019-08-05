@@ -7,12 +7,22 @@ import (
 	"./tools"
 )
 
-var flagSrc = *flag.String("s", "./src", "源代码路径")
-var flagDst = *flag.String("d", "./dst", "打包路径")
-var flagBranch = *flag.String("b", "master", "项目分支")
-var flagInterval = *flag.Int64("i", 5, "更新频率")
+var (
+	flagSrc      string
+	flagDst      string
+	flagBranch   string
+	flagInterval int64
+)
+
+func init() {
+	flag.StringVar(&flagSrc, "s", "./src", "源代码路径")
+	flag.StringVar(&flagDst, "d", "./dst", "打包路径")
+	flag.StringVar(&flagBranch, "b", "master", "项目分支")
+	flag.Int64Var(&flagInterval, "i", 5, "更新频率")
+}
 
 func main() {
+	flag.Parse()
 	for {
 		pack()
 		time.Sleep(time.Second * time.Duration(flagInterval))
@@ -20,7 +30,6 @@ func main() {
 }
 
 func pack() {
-	flag.Parse()
 	//src
 	src, err := tools.NewSrc(flagSrc, flagBranch)
 	if err != nil {
