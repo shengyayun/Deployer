@@ -1,4 +1,4 @@
-# Git项目自动部署工具
+# Web in Git Deployer
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/shengyayun/deployer/blob/master/LICENSE)
 
@@ -17,5 +17,5 @@ Usage of bin/deployer:
     	更新频率 (default 5)
   -s string
     	源代码路径 (default "./src")
-        
+
 ```
