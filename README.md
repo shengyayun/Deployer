@@ -6,7 +6,7 @@
 - [x] VueCli 3
 
 #### usage
-```shell
+```bash
 Usage of bin/deployer:
 
   -b string
