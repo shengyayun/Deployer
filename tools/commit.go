@@ -36,5 +36,9 @@ func (commit *Commit) Apply() error {
 	if err != nil {
 		return err
 	}
-	return os.Symlink(commit.dst.folder+"/"+commit.id, commit.dst.folder+"/html")
+	path := commit.dst.folder + "/html"
+	if _, err := os.Stat(path); err == nil {
+		os.Remove(path)
+	}
+	return os.Symlink(commit.dst.folder+"/"+commit.id, path)
 }
