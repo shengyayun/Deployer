@@ -1,4 +1,4 @@
-# Web in Git Deployer
+# 自动发布工具
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/shengyayun/deployer/blob/master/LICENSE)
 
